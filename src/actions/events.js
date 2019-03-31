@@ -19,11 +19,34 @@ export const startAddEvent = (eventData = {}) => {
     } = eventData
 
     const event = {title, note, organizer, location, startDate, endDate, category, photo}
+    
     return database.ref('events').push(event).then((ref) => {
       dispatch(AddEvent({
         id: ref.key,
         ...event
       }))
     }) 
+  }
+}
+
+export const setEvents = (events) => ({
+  type: 'SET_EVENTS',
+  events
+})
+
+export const startSetEvents = () => {
+  return (dispatch, getState) => {
+    return database.ref('events').once('value').then((snapshot) => {
+      const events = []
+
+      snapshot.forEach((childSnapshot) => {
+        events.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        })
+      })
+
+      dispatch(setEvents(events))
+    })
   }
 }

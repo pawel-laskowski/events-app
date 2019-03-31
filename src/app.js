@@ -9,6 +9,7 @@ import './styles/styles.scss'
 import 'react-dates/lib/css/_datepicker.css'
 import { firebase } from './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
+import { startSetEvents } from './actions/events'
 
 const store = configureStore()
 
@@ -28,8 +29,9 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'))
 
-renderApp()
-
+store.dispatch(startSetEvents()).then(() => {
+    renderApp()
+})
 // firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
 //         store.dispatch(login(user.uid))

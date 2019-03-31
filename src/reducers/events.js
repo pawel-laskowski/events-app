@@ -7,6 +7,8 @@ const eventsReducer = (state = eventsReducerDefaultState, action) => {
         ...state,
         action.event
       ]
+    case 'SET_EVENTS':
+      return action.events
     default:
       return state
   }
