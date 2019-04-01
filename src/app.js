@@ -29,20 +29,17 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'))
 
-store.dispatch(startSetEvents()).then(() => {
-    renderApp()
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log(user);
+        store.dispatch(login(user.uid, user.displayName, user.photoURL))
+        store.dispatch(startSetEvents()).then(() => {
+            renderApp()
+        })
+    } else {
+        store.dispatch(logout())
+        store.dispatch(startSetEvents()).then(() => {
+            renderApp()
+        })
+    }
 })
-// firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//         store.dispatch(login(user.uid))
-//         renderApp()
-//         if(history.location.pathname === '/') {
-//             history.push('/dashboard')
-//         }
-
-//     } else {
-//         store.dispatch(logout())
-//         renderApp()
-//         history.push('/')
-//     }
-// })

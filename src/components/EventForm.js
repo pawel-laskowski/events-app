@@ -102,13 +102,18 @@ export default class EventForm extends React.Component {
                     value={this.state.location}
                     onChange={this.onLocationChange}
                 />
-                <input
-                    type="text"
-                    placeholder="Category"
-                    className="text-input"
-                    value={this.state.category}
+                <select
+                    className="select"
                     onChange={this.onCategoryChange}
-                />
+                >
+                    <option value="" disabled selected> -- Category -- </option>
+                    <option value='sport'>Sport</option>
+                    <option value='music'>Music</option>
+                    <option value='science'>Science</option>
+                    <option value='travel'>Travel</option>
+                    <option value='other'>Other</option>
+                </select>
+
                 <DateRangePicker
                     startDate={this.state.startDate}
                     startDateId={"start"}
@@ -120,11 +125,12 @@ export default class EventForm extends React.Component {
                     showClearDates={true}
                     numberOfMonths={1}
                     minimumNights={0}
+                    displayFormat="DD/MM/YYYY"
                     isOutsideRange={() => false}
                 />
                 <input
                     type="text"
-                    placeholder="Photo"
+                    placeholder="Paste URL of your event photo"
                     className="text-input"
                     value={this.state.photo}
                     onChange={this.onPhotoChange}

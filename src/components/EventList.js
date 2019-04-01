@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import EventListItem from './EventListItem'
-// import selectEvents from '../selectors/events'
+import selectEvents from '../selectors/events'
+
 
 export const EventList = (props) => (
     <div className="content-container">
@@ -23,7 +24,7 @@ export const EventList = (props) => (
 
 const mapStateToProps = (state) => {
     return {
-        events: state.events
+        events: selectEvents(state.events, state.filters)
     }
 }
 

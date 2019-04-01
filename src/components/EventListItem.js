@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 export const EventListItem = ({title, location, startDate, endDate, photo}) => (
-    <div>
+    <div className="list-item">
         <div>
             <h3 className="">{title}</h3>
             <h2>{location}</h2>
@@ -11,8 +11,8 @@ export const EventListItem = ({title, location, startDate, endDate, photo}) => (
                 {moment(startDate).format("MMMM Do YYYY")}-{moment(endDate).format("MMMM Do YYYY")}
             </span>
         </div>
-        <Link className="list-item" to={`/`}>
-            <img src={photo}></img>
+        <Link to={`/`}>
+            <img src={photo} width="300px" height="200px" />
         </Link>
     </div>
 

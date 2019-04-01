@@ -3,9 +3,9 @@ import moment from 'moment'
 const filtersReducerDefaultState = {
     text: '',
     location: '',
-    category: 'ALL', // 1 of 5 + ALL
-    startDate: moment().startOf('year'),
-    endDate: moment().endOf('year')
+    category: '',
+    startDate: null,
+    endDate: null
 }
 
 export default (state = filtersReducerDefaultState, action) => {
@@ -33,7 +33,7 @@ export default (state = filtersReducerDefaultState, action) => {
         case 'SET_END_DATE':
             return {
                 ...state,
-                startDate: action.endDate
+                endDate: action.endDate
             }
         default:
             return state
