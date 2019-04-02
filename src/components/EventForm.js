@@ -9,13 +9,13 @@ export default class EventForm extends React.Component {
 
         this.state = {
             title: props.event ? props.event.title : '',
-            note: props.event ? props.event.note : '',
             organizer: props.event ? props.event.organizer : '',
             location: props.event ? props.event.location : '',
             startDate: props.event ? moment(props.event.startDate) : moment(),
             endDate: props.event ? moment(props.event.endDate) : moment(),
             category: props.event ? props.event.category : '',
             photo: props.event ? props.event.photo : '',
+            note: props.event ? props.event.note : '',
             calendarFocused: null,
             error: undefined
         }
@@ -56,24 +56,23 @@ export default class EventForm extends React.Component {
     onFocusChange = (calendarFocused) => {
         this.setState(() => ({ calendarFocused }))
     }
-    // onFocusChange = ({ focused }) => {
-    //     this.setState(() => ({ calendarFocused: focused }))
-    // }
 
     onSubmit = (e) => {
         e.preventDefault()
         if (!this.state.title || !this.state.location) {
             this.setState(() => ({ error: 'Please fill up the form!' }))
         } else {
-            this.setState(() => ({ error: undefined }))
-            console.log(this.state);
-            
-            // this.props.onSubmit({
-            //     description: this.state.description,
-            //     amount: parseFloat(this.state.amount, 10) * 100,
-            //     createdAt: this.state.createdAt.valueOf(),
-            //     note: this.state.note
-            // })
+            this.setState({ error: undefined })
+            this.props.onSubmit({
+                title: this.state.title,
+                organizer: this.state.organizer,
+                location: this.state.location,
+                startDate: this.state.startDate.valueOf(),
+                endDate: this.state.endDate.valueOf(),
+                category: this.state.category,
+                photo: this.state.photo,
+                note: this.state.note
+            })
         }
     }
 
@@ -103,6 +102,18 @@ export default class EventForm extends React.Component {
                     value={this.state.location}
                     onChange={this.onLocationChange}
                 />
+                <select
+                    className="select"
+                    onChange={this.onCategoryChange}
+                >
+                    <option value="" disabled selected> -- Category -- </option>
+                    <option value='sport'>Sport</option>
+                    <option value='music'>Music</option>
+                    <option value='science'>Science</option>
+                    <option value='travel'>Travel</option>
+                    <option value='other'>Other</option>
+                </select>
+
                 <DateRangePicker
                     startDate={this.state.startDate}
                     startDateId={"start"}
@@ -114,7 +125,15 @@ export default class EventForm extends React.Component {
                     showClearDates={true}
                     numberOfMonths={1}
                     minimumNights={0}
+                    displayFormat="DD/MM/YYYY"
                     isOutsideRange={() => false}
+                />
+                <input
+                    type="text"
+                    placeholder="Paste URL of your event photo"
+                    className="text-input"
+                    value={this.state.photo}
+                    onChange={this.onPhotoChange}
                 />
                 <textarea
                     placeholder="Add a note for your event (optional)"

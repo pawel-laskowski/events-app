@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from './Header'
+import EventList from './EventList';
+import EventListFilters from './EventListFilters'
 
 const DashboardPage = () => (
   <div>
     <Header />
-    <div>
-      Dashboard page content
-    </div>  
+    <EventListFilters />
+    <EventList />
   </div>
 
 );

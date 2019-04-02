@@ -5,8 +5,10 @@ const eventsReducer = (state = eventsReducerDefaultState, action) => {
     case 'ADD_EVENT':
       return [
         ...state,
-        action.expense
+        action.event
       ]
+    case 'SET_EVENTS':
+      return action.events
     default:
       return state
   }

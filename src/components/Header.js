@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { startLogout } from '../actions/auth'
+import { startLogin, startLogout } from '../actions/auth'
 
-export const Header = ({startLogout}) => (
+export const Header = ({startLogin, startLogout}) => (
     <header className="header">
         <div className="content-container">
             <div className="header__content">
@@ -12,12 +12,14 @@ export const Header = ({startLogout}) => (
                 </Link>
                 <Link className="button" to="/create">Add Event</Link>
                 <button className="button button--link" onClick={startLogout}>Logout</button>
+                <button className="button" onClick={startLogin}>Login</button>   
             </div>
         </div>
     </header>
 )
 
 const mapDispatchToProps = (dispatch) => ({
+    startLogin: () => dispatch(startLogin()),
     startLogout: () => dispatch(startLogout())
 })
 
