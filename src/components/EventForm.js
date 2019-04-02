@@ -62,7 +62,7 @@ export default class EventForm extends React.Component {
         if (!this.state.title || !this.state.location) {
             this.setState(() => ({ error: 'Please fill up the form!' }))
         } else {
-            this.setState(() => ({ error: undefined }))
+            this.setState({ error: undefined })
             this.props.onSubmit({
                 title: this.state.title,
                 organizer: this.state.organizer,

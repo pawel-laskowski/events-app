@@ -34,19 +34,17 @@ export const setEvents = (events) => ({
   events
 })
 
-export const startSetEvents = () => {
-  return (dispatch, getState) => {
-    return database.ref('events').once('value').then((snapshot) => {
-      const events = []
+export const startSetEvents = () => (dispatch, getState) => {
+  return database.ref('events').once('value').then((snapshot) => {
+    const events = []
 
-      snapshot.forEach((childSnapshot) => {
-        events.push({
-          id: childSnapshot.key,
-          ...childSnapshot.val()
-        })
+    snapshot.forEach((childSnapshot) => {
+      events.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
       })
-
-      dispatch(setEvents(events))
     })
-  }
+
+    dispatch(setEvents(events))
+  })
 }
