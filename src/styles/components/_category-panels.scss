@@ -1,0 +1,23 @@
+.panels {
+    display: flex;
+
+}
+
+.panel {
+    border: none;
+    width:200px;
+    height: 400px;
+    background-size: cover;
+    flex: 1;
+}
+
+.panel__sport { background-image: url('/images/sport.jpg'); }
+.panel__music { background-image: url('/images/music.jpg'); }
+.panel__science { background-image: url('/images/science.jpg'); }
+.panel__travel { background-image: url('/images/travel.jpg'); }
+.panel__other { background-image: url('/images/other.jpg'); }
+
+
+.panel-active {
+ flex: 4;
+}
