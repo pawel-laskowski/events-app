@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { DateRangePicker } from 'react-dates'
 import { setTextFilter, setLocationFilter, setCategoryFilter, setStartDate, setEndDate } from '../actions/filters'
+import EventCategoryFilter from './EventCategoryFilter';
 
 export class EventListFilters extends React.Component {
     state = {
@@ -17,9 +18,6 @@ export class EventListFilters extends React.Component {
     onTextChange = (e) => {
         this.props.setTextFilter(e.target.value)
     }
-    onCategoryChange = (e) => {
-        this.props.setCategoryFilter(e.target.value)
-    }
     onLocationChange = (e) => {
         this.props.setLocationFilter(e.target.value)
     }
@@ -28,6 +26,7 @@ export class EventListFilters extends React.Component {
     render() {
         return (
             <div className="content-container">
+                <EventCategoryFilter />
                 <input
                     type='text'
                     className="text-input"
@@ -42,18 +41,6 @@ export class EventListFilters extends React.Component {
                     value={this.props.filters.location}
                     onChange={this.onLocationChange}
                 />
-                <select
-                    className="select"
-                    value={this.props.filters.category}
-                    onChange={this.onCategoryChange}
-                >
-                    <option value=''>All</option>
-                    <option value='sport'>Sport</option>
-                    <option value='music'>Music</option>
-                    <option value='science'>Science</option>
-                    <option value='travel'>Travel</option>
-                    <option value='other'>Other</option>
-                </select>
                 <DateRangePicker
                     startDate={this.props.filters.startDate}
                     startDateId={"start"}

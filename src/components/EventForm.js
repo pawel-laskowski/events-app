@@ -60,7 +60,7 @@ export default class EventForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault()
         if (!this.state.title || !this.state.location) {
-            this.setState(() => ({ error: 'Please fill up the form!' }))
+            this.setState(() => ({ error: 'Please complete the entire form!' }))
         } else {
             this.setState({ error: undefined })
             this.props.onSubmit({
@@ -79,7 +79,6 @@ export default class EventForm extends React.Component {
     render() {
         return (
             <form className="form" onSubmit={this.onSubmit}>
-                {this.state.error && <p className="form__error">{this.state.error}</p>}
                 <input
                     type="text"
                     placeholder="Title"
@@ -142,6 +141,7 @@ export default class EventForm extends React.Component {
                     onChange={this.onNoteChange}
                 >
                 </textarea>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
                 <div>
                     <button className="button">
                         Save Event
