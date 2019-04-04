@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import DashboardPage from '../components/DashboardPage';
 import AddEventPage from '../components/AddEventPage'
 import NotFoundPage from '../components/NotFoundPage';
+import EditEventPage from '../components/EditEventPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -15,6 +16,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={DashboardPage} exact={true} />
         <Route path="/create" component={AddEventPage} />
+        <Route path="/edit/:id" component={EditEventPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

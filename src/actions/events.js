@@ -29,6 +29,33 @@ export const startAddEvent = (eventData = {}) => {
   }
 }
 
+export const editEvent = (id, updates) => ({
+  type: 'EDIT_EVENT',
+  id,
+  updates
+})
+
+export const startEditEvent = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`events/${id}`).update(updates).then(() => {
+      dispatch(editEvent(id, updates))
+    })
+  }
+}
+
+export const removeEvent = ({ id } = {}) => ({
+  type: 'REMOVE_EVENT',
+  id
+})
+
+export const startRemoveEvent = ({ id } = {}) => {
+  return (dispatch) => {
+    return database.ref(`events/${id}`).remove().then(() => {
+      dispatch(removeEvent({ id }))
+    })
+  }
+}
+
 export const setEvents = (events) => ({
   type: 'SET_EVENTS',
   events

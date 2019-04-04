@@ -14,14 +14,19 @@ export class AddEventPage extends React.Component {
             <div className="content-container">
                 <EventForm 
                     onSubmit={this.onSubmit}
+                    auth={this.props.auth}
                 />
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
 const mapDispatchToProps = (dispatch) => ({
     startAddEvent: (event) => dispatch(startAddEvent(event))
 })
 
-export default connect(undefined, mapDispatchToProps)(AddEventPage)
+export default connect(mapStateToProps, mapDispatchToProps)(AddEventPage)

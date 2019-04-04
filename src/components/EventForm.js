@@ -9,7 +9,7 @@ export default class EventForm extends React.Component {
 
         this.state = {
             title: props.event ? props.event.title : '',
-            organizer: props.event ? props.event.organizer : '',
+            organizer: props.event ? props.event.organizer : props.auth,
             location: props.event ? props.event.location : '',
             startDate: props.event ? moment(props.event.startDate) : moment(),
             endDate: props.event ? moment(props.event.endDate) : moment(),
@@ -28,10 +28,6 @@ export default class EventForm extends React.Component {
     onNoteChange = (e) => {
         const note = e.target.value
         this.setState(() => ({ note }))
-    }
-    onOrganizerChange = (e) => {
-        const organizer = e.target.value
-        this.setState(() => ({ organizer }))
     }
     onLocationChange = (e) => {
         const location = e.target.value
@@ -60,7 +56,7 @@ export default class EventForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault()
         if (!this.state.title || !this.state.location) {
-            this.setState(() => ({ error: 'Please complete the entire form!' }))
+            this.setState(() => ({ error: 'Please complete the entire form!' }))    
         } else {
             this.setState({ error: undefined })
             this.props.onSubmit({
@@ -89,13 +85,6 @@ export default class EventForm extends React.Component {
                 />
                 <input
                     type="text"
-                    placeholder="Organizer"
-                    className="text-input"
-                    value={this.state.organizer}
-                    onChange={this.onOrganizerChange}
-                />
-                <input
-                    type="text"
                     placeholder="Location"
                     className="text-input"
                     value={this.state.location}
@@ -104,8 +93,9 @@ export default class EventForm extends React.Component {
                 <select
                     className="select"
                     onChange={this.onCategoryChange}
+                    defaultValue=""
                 >
-                    <option value="" disabled selected> -- Category -- </option>
+                    <option value="" disabled> -- Category -- </option>
                     <option value='sport'>Sport</option>
                     <option value='music'>Music</option>
                     <option value='science'>Science</option>
