@@ -15,10 +15,10 @@ export const startAddEvent = (eventData = {}) => {
       startDate = 0,
       endDate = 0,
       category = '',
-      photo = ''
+      image = ''
     } = eventData
 
-    const event = {title, note, organizer, location, startDate, endDate, category, photo}
+    const event = { title, note, organizer, location, startDate, endDate, category, image}
     
     return database.ref('events').push(event).then((ref) => {
       dispatch(AddEvent({

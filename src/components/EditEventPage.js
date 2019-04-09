@@ -13,10 +13,10 @@ export class EditEventPage extends React.Component {
     render() {
         return (
             <EventForm 
+                onSubmit={this.onSubmit}
                 event={this.props.event}
             />
         )
-
     }
 }
 

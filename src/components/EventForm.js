@@ -14,11 +14,33 @@ export default class EventForm extends React.Component {
             startDate: props.event ? moment(props.event.startDate) : moment(),
             endDate: props.event ? moment(props.event.endDate) : moment(),
             category: props.event ? props.event.category : '',
-            photo: props.event ? props.event.photo : '',
+            image: props.event ? props.event.image : '',
             note: props.event ? props.event.note : '',
             calendarFocused: null,
             error: undefined
         }
+    }
+    
+    testImgURL = (url, timeoutT) => {
+        return new Promise((resolve, reject) => {
+            const timeout = timeoutT || 5000;
+            let timer, img = new Image();
+            img.onerror = img.onabort = () => {
+                clearTimeout(timer);
+                reject("error");
+            };
+            img.onload = () => {
+                clearTimeout(timer);
+                resolve("success");
+            };
+            timer = setTimeout(() => {
+                // reset .src to invalid URL so it stops previous
+                // loading, but doesn't trigger new load
+                img.src = "//!!!!/test.jpg";
+                reject("timeout");
+            }, timeout);
+            img.src = url;
+        });
     }
 
     onTitleChange = (e) => {
@@ -37,9 +59,13 @@ export default class EventForm extends React.Component {
         const category = e.target.value
         this.setState(() => ({ category }))
     }
-    onPhotoChange = (e) => {
-        const photo = e.target.value
-        this.setState(() => ({ photo }))
+    onImageChange = (e) => {
+        const image = e.target.value
+        this.testImgURL(image).then(() => {
+            this.setState(() => ({ image }))
+        }).catch((error) => {
+            this.setState(() => ({ error: 'Invalid image URL' }))
+        })
     }
     onDatesChange = ({ startDate, endDate }) => {
         if (startDate) {
@@ -55,8 +81,8 @@ export default class EventForm extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        if (!this.state.title || !this.state.location) {
-            this.setState(() => ({ error: 'Please complete the entire form!' }))    
+        if (!this.state.title || !this.state.location || !this.state.category) {
+            this.setState(() => ({ error: 'Please complete the entire form!' }))
         } else {
             this.setState({ error: undefined })
             this.props.onSubmit({
@@ -66,7 +92,7 @@ export default class EventForm extends React.Component {
                 startDate: this.state.startDate.valueOf(),
                 endDate: this.state.endDate.valueOf(),
                 category: this.state.category,
-                photo: this.state.photo,
+                image: this.state.image,
                 note: this.state.note
             })
         }
@@ -93,7 +119,7 @@ export default class EventForm extends React.Component {
                 <select
                     className="select"
                     onChange={this.onCategoryChange}
-                    defaultValue=""
+                    defaultValue={this.state.category}
                 >
                     <option value="" disabled> -- Category -- </option>
                     <option value='sport'>Sport</option>
@@ -119,10 +145,10 @@ export default class EventForm extends React.Component {
                 />
                 <input
                     type="text"
-                    placeholder="Paste URL of your event photo"
+                    placeholder="Paste URL of your event image"
                     className="text-input"
-                    value={this.state.photo}
-                    onChange={this.onPhotoChange}
+                    value={this.state.image}
+                    onChange={this.onImageChange}
                 />
                 <textarea
                     placeholder="Add a note for your event (optional)"

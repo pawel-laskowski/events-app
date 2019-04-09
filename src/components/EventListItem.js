@@ -21,10 +21,10 @@ export class EventListItem extends React.Component {
                     </span>
                 </div>
                 <Link to={`/`}>
-                    <img src={this.props.photo} width="300px" height="200px" />
+                    <img src={this.props.image} width="300px" height="200px" />
                 </Link>
                 {
-                    this.props.auth.uid === this.props.organizer.uid ? 
+                    this.props.auth.uid && this.props.auth.uid === this.props.organizer.uid ? 
                     (
                         <div>
                             <Link className="list-item" to={`/edit/${this.props.id}`}>

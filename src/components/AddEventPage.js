@@ -4,6 +4,7 @@ import EventForm from './EventForm'
 import { startAddEvent } from '../actions/events'
 
 export class AddEventPage extends React.Component {
+    
     onSubmit = (event) => {
         this.props.startAddEvent(event)
         this.props.history.push('/')
