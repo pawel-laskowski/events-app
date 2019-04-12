@@ -1,6 +1,5 @@
 .panels {
     display: flex;
-
 }
 
 .panel {
@@ -9,13 +8,65 @@
     height: 400px;
     background-size: cover;
     flex: 1;
+    padding: 0;
+    position: relative;
 }
 
-.panel__sport { background-image: url('/images/sport.jpg'); }
-.panel__music { background-image: url('/images/music.jpg'); }
-.panel__science { background-image: url('/images/science.jpg'); }
-.panel__travel { background-image: url('/images/travel.jpg'); }
-.panel__other { background-image: url('/images/other.jpg'); }
+.panel__sport { 
+    background-image: url('/images/sport.jpg');
+    &::after {
+        content: 'Sport'; 
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: $sport-color;
+    }
+}
+.panel__music { 
+    background-image: url('/images/music.jpg');
+    &::after {
+        content: 'Music'; 
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: $music-color;
+    }
+}
+.panel__science { 
+    background-image: url('/images/science.jpg'); 
+    &::after {
+        content: 'Science'; 
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: $science-color;
+    }
+}
+.panel__travel { 
+    background-image: url('/images/travel.jpg'); 
+    &::after {
+        content: 'Travel'; 
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: $travel-color;
+    }
+}
+.panel__other { 
+    background-image: url('/images/other.jpg'); 
+    &::after {
+        content: 'Other'; 
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: $other-color;
+    }
+}
 
 
 .panel-active {

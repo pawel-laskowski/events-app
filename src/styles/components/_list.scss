@@ -61,3 +61,23 @@
         padding-left: $s-size;
     }
 }
+
+.list-item__sport {
+    background-color: $sport-color;
+}
+
+.list-item__science {
+    background-color: $science-color;
+}
+
+.list-item__travel {
+    background-color: $travel-color;
+}
+
+.list-item__music {
+    background-color: $music-color;
+}
+
+.list-item__other {
+    background-color: $other-color;
+}

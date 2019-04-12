@@ -30,14 +30,14 @@ export class EventListFilters extends React.Component {
                 <input
                     type='text'
                     className="text-input"
-                    placeholder="Search events"
+                    placeholder="Search event"
                     value={this.props.filters.text}
                     onChange={this.onTextChange}
                 />
                 <input
                     type='text'
                     className="text-input"
-                    placeholder="Where?"
+                    placeholder="Search location"
                     value={this.props.filters.location}
                     onChange={this.onLocationChange}
                 />

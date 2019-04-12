@@ -12,9 +12,14 @@
 .header__title {
     color: white;
     text-decoration: none;
+    font-family: 'Pacifico', cursive;
     h1 {
         margin: 0;
     }
+}
+
+.header_user-message {
+    color: white;
 }
 
 .header__userimg {
@@ -23,6 +28,9 @@
     border-radius: 50%;
 }
 
-.header__login__message {
+.header__login-message {
+    color: $dark-grey;
+    background-color: $off-white;
+    position: absolute;
     display: none;
 }

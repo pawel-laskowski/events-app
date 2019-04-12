@@ -15,7 +15,9 @@ export class EventListItem extends React.Component {
             <div className="list-item">
                 <div>
                     <h3 className="">{this.props.title}</h3>
+                    <img src={require('../../public/images/location.png')}/>
                     <h2>{this.props.location}</h2>
+                    <img src={require('../../public/images/date.png')} />
                     <span className="">
                         {moment(this.props.startDate).format("MMMM Do YYYY")}-{moment(this.props.endDate).format("MMMM Do YYYY")}
                     </span>
@@ -23,21 +25,24 @@ export class EventListItem extends React.Component {
                 <Link to={`/`}>
                     <img src={this.props.image} width="300px" height="200px" />
                 </Link>
-                {
-                    this.props.auth.uid && this.props.auth.uid === this.props.organizer.uid ? 
-                    (
-                        <div>
-                            <Link className="list-item" to={`/edit/${this.props.id}`}>
-                                <button className="button" onClick={this.onEdit}>Edit</button>
-                            </Link>
-                            <button className="button" onClick={this.onRemove}>Remove</button>
-                        </div>
+                <div className={"list-item__" + this.props.category}>
+                    {
+                        this.props.auth.uid && this.props.auth.uid === this.props.organizer.uid ? 
+                        (
+                            <div>
+                                <Link to={`/edit/${this.props.id}`}>
+                                    <button className="button" onClick={this.onEdit}>Edit</button>
+                                </Link>
+                                <button className="button" onClick={this.onRemove}>Remove</button>
+                            </div>
 
-                    ) : (
-                        <div>
-                        </div>
-                    )
-                }
+                        ) : (
+                            <div>
+                            </div>
+                        )
+                    }                
+                </div>
+
             </div>
         )
     }

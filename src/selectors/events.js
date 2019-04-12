@@ -8,8 +8,8 @@ export default (events, { text, location, category, startDate, endDate}) => {
         const endDateMatch = endDate ? endDate.isSameOrAfter(eventEndDate, 'day') : true
         const textMatch = event.title.toLowerCase().includes(text.toLowerCase())
         const locationMatch = event.location.toLowerCase().includes(location.toLowerCase())
-        // const categoryMatch = event.category.toLowerCase().includes(category.toLowerCase())
+        const categoryMatch = event.category.toLowerCase().includes(category.toLowerCase())
 
-        return startDateMatch && endDateMatch && textMatch && locationMatch
+        return startDateMatch && endDateMatch && textMatch && locationMatch && categoryMatch
     }).sort((a, b) => a.startDate < b.startDate ? 1 : -1)
 }

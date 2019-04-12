@@ -6,8 +6,12 @@ import { startLogin, startLogout } from '../actions/auth'
 export class Header extends React.Component {
 
     openMessage = () => {
-        const message = document.querySelector(".header__login__message")
+        const message = document.querySelector(".header__login-message")
         message.style.display = "block"
+        setTimeout(() => {
+            message.style.display = "none"
+        }, 1000)
+
     }
 
     render () {
@@ -21,7 +25,7 @@ export class Header extends React.Component {
                         {
                             this.props.auth.uid ? (
                                 <div>
-                                    <span>Hello, {this.props.auth.displayName.split(' ')[0]}!</span>
+                                    <p className="header_user-message">Hello, {this.props.auth.displayName.split(' ')[0]}!</p>
                                     <img className="header__userimg" src={this.props.auth.photoURL}></img>
                                     <button className="button button--link" onClick={this.props.startLogout}>Logout</button>
                                     <Link className="button" to="/create">Add Event</Link>
@@ -29,8 +33,8 @@ export class Header extends React.Component {
                             ) : (
                                     <div>
                                         <button className="button button--link button--login" onClick={this.props.startLogin}>Login</button>
-                                        <p className="header__login__message">Login to add event</p>
-                                        <Link className="button" onMouseMove={this.openMessage} onMouseOut={this.closeMessage} to="/">Add Event</Link>
+                                        <div className="header__login-message">Login to add event</div>
+                                        <Link className="button button--disabled" onMouseMove={this.openMessage} onMouseOut={this.closeMessage} disabled={true} to="/">Add Event</Link>
                                     </div>
                                 )
                         }
