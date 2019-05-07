@@ -24,9 +24,9 @@ export class Header extends React.Component {
                         </Link>
                         {
                             this.props.auth.uid ? (
-                                <div>
-                                    <p className="header_user-message">Hello, {this.props.auth.displayName.split(' ')[0]}!</p>
-                                    <img className="header__userimg" src={this.props.auth.photoURL}></img>
+                                <div className= "header__login-box">
+                                    <p className="header__user-message">Hello, {this.props.auth.displayName.split(' ')[0]}!</p>
+                                    <img className="header__user-img" src={this.props.auth.photoURL}></img>
                                     <button className="button button--link" onClick={this.props.startLogout}>Logout</button>
                                     <Link className="button" to="/create">Add Event</Link>
                                 </div>

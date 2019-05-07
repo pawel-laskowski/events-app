@@ -18,11 +18,17 @@
     }
 }
 
-.header_user-message {
-    color: white;
+.header__login-box {
+    display: flex;
+    align-items: center;
 }
 
-.header__userimg {
+.header__user-message {
+    color: white;
+    padding-right: $s-size;
+}
+
+.header__user-img {
     width: 32px;
     height: 32px;
     border-radius: 50%;
